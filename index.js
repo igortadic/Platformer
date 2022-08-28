@@ -38,7 +38,8 @@ player.update();
 
 function animate() {
   requestAnimationFrame(animate);
-  console.log('go')
+  c.clearRect(0, 0, canvas.width, canvas.height)
+  player.update();
 }
 
 animate()
