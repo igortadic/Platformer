@@ -28,11 +28,17 @@ class Player {
   }
 
   update() {
-    this.position.y += this.velocity.y 
+    this.position.y += this.velocity.y
     this.draw()
-
   }
 }
 
 const player = new Player();
-player.draw();
+player.update();
+
+function animate() {
+  requestAnimationFrame(animate);
+  console.log('go')
+}
+
+animate()
