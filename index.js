@@ -31,6 +31,7 @@ class Player {
 
   update() {
     this.draw()
+    this.position.x += this.velocity.x
     this.position.y += this.velocity.y
 
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
@@ -66,6 +67,7 @@ window.addEventListener('keydown', ({keyCode}) => {
 
     case 68:
       console.log('right')
+      player.velocity.x = player.velocity.x + 20;
       break;
 
     case 87:
