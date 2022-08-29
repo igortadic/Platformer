@@ -43,6 +43,14 @@ class Player {
 }
 
 const player = new Player();
+const keys = {
+  right: {
+    pressed: false;
+  },
+  left: {
+    pressed: false;
+  }
+}
 player.update();
 
 function animate() {
@@ -59,6 +67,7 @@ window.addEventListener('keydown', ({keyCode}) => {
   switch (keyCode) {
     case 65:
       console.log('left')
+      keys.left.pressed = true;
       break;
 
     case 83:
@@ -67,12 +76,37 @@ window.addEventListener('keydown', ({keyCode}) => {
 
     case 68:
       console.log('right')
-      player.velocity.x = player.velocity.x + 20;
+      keys.right.pressed = true;
       break;
 
     case 87:
       console.log('up')
       player.velocity.y = player.velocity.y - 20;
+      break;
+  }
+})
+
+window.addEventListener('keyup', ({keyCode}) => {
+  console.log(keyCode);
+
+  switch (keyCode) {
+    case 65:
+      console.log('left')
+      keys.left.pressed = false;
+      break;
+
+    case 83:
+      console.log('down')
+      break;
+
+    case 68:
+      console.log('right')
+      keys.right.pressed = false;
+      break;
+
+    case 87:
+      console.log('up')
+      player.velocity.y = player.velocity.y;
       break;
   }
 })
