@@ -64,8 +64,38 @@ class Platform {
   }
 }
 
-const image = new Image()
-image.src = platform
+class GenericObject {
+  constructor({ x, y, image }) {
+    this.position = {
+      x: x,
+      y: y,
+    }
+    this.image = image
+    this.width = image.width
+    this.height = image.height
+  }
+
+  draw() {
+    c.drawImage(this.image,
+      this.position.x,
+      this.position.y)
+  }
+}
+
+const genericObjects = [
+  new GenericObject({
+    x: 0,
+    y: 0,
+
+  })
+]
+
+function createImage() {
+  const image = new Image()
+  image.src = platform
+  return image
+}
+
 
 
 const player = new Player();

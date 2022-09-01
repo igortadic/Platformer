@@ -218,8 +218,44 @@ var Platform = /*#__PURE__*/function () {
   return Platform;
 }();
 
-var image = new Image();
-image.src = _img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+var GenericObject = /*#__PURE__*/function () {
+  function GenericObject(_ref2) {
+    var x = _ref2.x,
+        y = _ref2.y,
+        image = _ref2.image;
+
+    _classCallCheck(this, GenericObject);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.image = image;
+    this.width = image.width;
+    this.height = image.height;
+  }
+
+  _createClass(GenericObject, [{
+    key: "draw",
+    value: function draw() {
+      c.drawImage(this.image, this.position.x, this.position.y);
+    }
+  }]);
+
+  return GenericObject;
+}();
+
+var genericObjects = [new GenericObject({
+  x: 0,
+  y: 0
+})];
+
+function createImage() {
+  var image = new Image();
+  image.src = _img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+  return image;
+}
+
 var player = new Player();
 var platforms = [new Platform({
   x: -1,
@@ -284,8 +320,8 @@ function animate() {
 }
 
 animate();
-window.addEventListener('keydown', function (_ref2) {
-  var keyCode = _ref2.keyCode;
+window.addEventListener('keydown', function (_ref3) {
+  var keyCode = _ref3.keyCode;
   console.log(keyCode);
 
   switch (keyCode) {
@@ -309,8 +345,8 @@ window.addEventListener('keydown', function (_ref2) {
       break;
   }
 });
-window.addEventListener('keyup', function (_ref3) {
-  var keyCode = _ref3.keyCode;
+window.addEventListener('keyup', function (_ref4) {
+  var keyCode = _ref4.keyCode;
   console.log(keyCode);
 
   switch (keyCode) {
