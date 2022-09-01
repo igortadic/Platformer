@@ -2,8 +2,8 @@ import platform from '../img/platform.png'
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 1024
+canvas.height = 576
 
 const gravity = .5
 
@@ -48,13 +48,10 @@ class Platform {
     this.position = {
       x: x,
       y: y,
-
     }
-
-    this.width = 200
-    this.height = 20
-
     this.image = image
+    this.width = image.width
+    this.height = image.height
   }
 
   draw() {
@@ -94,12 +91,14 @@ player.update();
 
 function animate() {
   requestAnimationFrame(animate);
-  c.clearRect(0, 0, canvas.width, canvas.height)
+  c.fillStyle = 'white';
+  c.fillRect(0, 0, canvas.width, canvas.height)
 
-  player.update();
   platforms.forEach(platform => {
     platform.draw();
   })
+
+  player.update();
 
 
   if (keys.right.pressed && player.position.x < 500) {
