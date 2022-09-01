@@ -192,12 +192,12 @@ var image = new Image();
 image.src = _img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"];
 var player = new Player();
 var platforms = [new Platform({
-  x: 200,
-  y: 100,
+  x: -1,
+  y: 480,
   image: image
 }), new Platform({
-  x: 500,
-  y: 200,
+  x: image.width - 2.8,
+  y: 480,
   image: image
 })];
 var keys = {

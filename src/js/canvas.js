@@ -68,12 +68,12 @@ image.src = platform
 const player = new Player();
 const platforms = [
   new Platform({
-  x: 200,
-  y: 100,
+  x: -1,
+  y: 480,
   image: image
 }),
   new Platform({
-    x: 500, y: 200, image: image })
+    x: image.width - 2.8, y: 480, image: image })
 ]
 
 const keys = {
