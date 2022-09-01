@@ -86,27 +86,29 @@ const genericObjects = [
   new GenericObject({
     x: 0,
     y: 0,
-
+    image: createImage(background)
   })
 ]
 
-function createImage() {
+function createImage(imageSrc) {
   const image = new Image()
-  image.src = platform
+  image.src = imageSrc
   return image
 }
 
-
+const platformImage = createImage(platform)
 
 const player = new Player();
 const platforms = [
   new Platform({
   x: -1,
   y: 480,
-  image: image
+  image: platformImage
 }),
   new Platform({
-    x: image.width - 2.8, y: 480, image: image })
+    x: platformImage.width - 2.9,
+    y: 480,
+    image: platformImage })
 ]
 
 const keys = {
@@ -126,6 +128,10 @@ function animate() {
   requestAnimationFrame(animate);
   c.fillStyle = 'white';
   c.fillRect(0, 0, canvas.width, canvas.height)
+
+  genericObjects.forEach(GenericObject => {
+    genericObject.draw()
+  })
 
   platforms.forEach(platform => {
     platform.draw();

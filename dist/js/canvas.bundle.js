@@ -247,24 +247,26 @@ var GenericObject = /*#__PURE__*/function () {
 
 var genericObjects = [new GenericObject({
   x: 0,
-  y: 0
+  y: 0,
+  image: createImage(_img_background_png__WEBPACK_IMPORTED_MODULE_1__["default"])
 })];
 
-function createImage() {
+function createImage(imageSrc) {
   var image = new Image();
-  image.src = _img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+  image.src = imageSrc;
   return image;
 }
 
+var platformImage = createImage(_img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var player = new Player();
 var platforms = [new Platform({
   x: -1,
   y: 480,
-  image: image
+  image: platformImage
 }), new Platform({
-  x: image.width - 2.8,
+  x: platformImage.width - 2.9,
   y: 480,
-  image: image
+  image: platformImage
 })];
 var keys = {
   right: {
@@ -281,6 +283,9 @@ function animate() {
   requestAnimationFrame(animate);
   c.fillStyle = 'white';
   c.fillRect(0, 0, canvas.width, canvas.height);
+  genericObjects.forEach(function (GenericObject) {
+    genericObject.draw();
+  });
   platforms.forEach(function (platform) {
     platform.draw();
   });
