@@ -1,4 +1,7 @@
 import platform from '../img/platform.png'
+import background from '../img/background.png'
+import hills from '../img/hills.png'
+
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
