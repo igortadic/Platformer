@@ -44,10 +44,12 @@ class Player {
 }
 
 class Platform {
-  constructor({ x, y }) {
+  constructor({ x, y, image }) {
     this.position = {
       x: x,
       y: y
+
+      this.image = image
     }
 
     this.width = 200
@@ -55,18 +57,22 @@ class Platform {
   }
 
   draw() {
-    c.fillStyle = 'blue'
-    c.fillRect(this.position.x,
-      this.position.y,
-      this.width,
-      this.height)
+    c.drawImage(this.image,
+      this.position.x,
+      this.position.y)
   }
 }
+
+const image = new Image()
+image.src = platform
+
 
 const player = new Player();
 const platforms = [
   new Platform({
-  x: 200, y: 100
+  x: 200,
+  y: 100,
+  image: ''
 }),
   new Platform({
     x: 500, y: 200 })
