@@ -47,13 +47,14 @@ class Platform {
   constructor({ x, y, image }) {
     this.position = {
       x: x,
-      y: y
+      y: y,
 
-      this.image = image
     }
 
     this.width = 200
     this.height = 20
+
+    this.image = image
   }
 
   draw() {
@@ -72,10 +73,10 @@ const platforms = [
   new Platform({
   x: 200,
   y: 100,
-  image: ''
+  image: image
 }),
   new Platform({
-    x: 500, y: 200 })
+    x: 500, y: 200, image: image })
 ]
 
 const keys = {
