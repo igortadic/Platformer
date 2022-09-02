@@ -40,8 +40,10 @@ class Player {
 
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
       this.velocity.y += gravity;
-    } else {
-      this.velocity.y = 0;
+    }
+
+    if(this.position.y > 800) {
+      location. reload()
     }
   }
 }
@@ -87,6 +89,11 @@ const genericObjects = [
     x: 0,
     y: 0,
     image: createImage(background)
+  }),
+  new GenericObject({
+    x: 0,
+    y: 0,
+    image: createImage(hills)
   })
 ]
 
@@ -103,12 +110,17 @@ const platforms = [
   new Platform({
   x: -1,
   y: 480,
-  image: createImage(platform)
+  image: platformImage
 }),
   new Platform({
     x: platformImage.width - 2.9,
     y: 480,
-    image: createImage(platform) })
+    image: platformImage }),
+  new Platform({
+    x: platformImage.width * 2 + 100,
+    y: 480,
+    image: platformImage
+  })
 ]
 
 const keys = {
@@ -152,10 +164,16 @@ function animate() {
         scrollOffset = scrollOffset + 5
         platform.position.x = platform.position.x - 5
       })
+      genericObjects.forEach(GenericObject => {
+        GenericObject.position.x -= 3
+      })
     } else if (keys.left.pressed) {
       platforms.forEach(platform => {
         scrollOffset = scrollOffset - 5
         platform.position.x = platform.position.x + 5
+      })
+      genericObjects.forEach(GenericObject => {
+        GenericObject.position.x += 3
       })
     }
   }
