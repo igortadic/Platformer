@@ -329,16 +329,16 @@ function animate() {
     if (player.position.y + player.height <= platform.position.y && player.position.y + player.height + player.velocity.y >= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width) {
       player.velocity.y = 0;
     }
-  });
+  }); // Win condition
 
   if (scrollOffset > 2000) {
     console.log("you win!");
+  } // Lose condition
+
+
+  if (player.position.y > 800) {
+    location.reload();
   }
-} // Lose condition
-
-
-if (player.position.y > 800) {
-  location.reload();
 }
 
 animate();

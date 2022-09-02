@@ -193,15 +193,16 @@ console.log(scrollOffset);
     }
   })
 
+  // Win condition
   if (scrollOffset > 2000) {
     console.log("you win!")
   }
 
-}
+  // Lose condition
+  if(player.position.y > 800) {
+    location.reload()
+  }
 
-// Lose condition
-if(player.position.y > 800) {
-  location. reload()
 }
 
 animate()
