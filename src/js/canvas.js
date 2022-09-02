@@ -41,12 +41,9 @@ class Player {
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
       this.velocity.y += gravity;
     }
-
-    if(this.position.y > 800) {
-      location. reload()
-    }
   }
 }
+
 
 class Platform {
   constructor({ x, y, image }) {
@@ -200,6 +197,11 @@ console.log(scrollOffset);
     console.log("you win!")
   }
 
+}
+
+// Lose condition
+if(player.position.y > 800) {
+  location. reload()
 }
 
 animate()

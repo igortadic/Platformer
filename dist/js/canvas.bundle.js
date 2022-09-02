@@ -183,10 +183,6 @@ var Player = /*#__PURE__*/function () {
       if (this.position.y + this.height + this.velocity.y <= canvas.height) {
         this.velocity.y += gravity;
       }
-
-      if (this.position.y > 800) {
-        location.reload();
-      }
     }
   }]);
 
@@ -338,6 +334,11 @@ function animate() {
   if (scrollOffset > 2000) {
     console.log("you win!");
   }
+} // Lose condition
+
+
+if (player.position.y > 800) {
+  location.reload();
 }
 
 animate();
