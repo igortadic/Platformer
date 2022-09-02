@@ -103,12 +103,12 @@ const platforms = [
   new Platform({
   x: -1,
   y: 480,
-  image: platformImage
+  image: createImage(platform)
 }),
   new Platform({
     x: platformImage.width - 2.9,
     y: 480,
-    image: platformImage })
+    image: createImage(platform) })
 ]
 
 const keys = {
@@ -130,7 +130,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height)
 
   genericObjects.forEach(GenericObject => {
-    genericObject.draw()
+    GenericObject.draw()
   })
 
   platforms.forEach(platform => {
