@@ -332,7 +332,7 @@ function animate() {
 
   if (keys.right.pressed && player.position.x < 500) {
     player.velocity.x = player.speed;
-  } else if (keys.left.pressed && player.position.x > 100) {
+  } else if (keys.left.pressed && player.position.x > 100 || keys.left.pressed && scrollOffset === 0 && player.position.x > 0) {
     player.velocity.x = -player.speed;
   } else {
     player.velocity.x = 0;
@@ -345,7 +345,7 @@ function animate() {
       genericObjects.forEach(function (GenericObject) {
         GenericObject.position.x -= player.speed * .66;
       });
-    } else if (keys.left.pressed) {
+    } else if (keys.left.pressed && scrollOffset > 0) {
       platforms.forEach(function (platform) {
         scrollOffset = scrollOffset - player.speed;
         platform.position.x = platform.position.x + player.speed;
@@ -421,7 +421,6 @@ window.addEventListener('keyup', function (_ref4) {
 
     case 87:
       console.log('up');
-      player.velocity.y = player.velocity.y;
       break;
   }
 });
