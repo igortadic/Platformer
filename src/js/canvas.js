@@ -1,6 +1,7 @@
 import platform from '../img/platform.png'
 import background from '../img/background.png'
 import hills from '../img/hills.png'
+import platformSmallTall from '../img/platformSmallTall.png'
 
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
@@ -12,6 +13,7 @@ const gravity = .5
 
 class Player {
   constructor() {
+    this.speed = 10
     this.position = {
       x: 100,
       y: 100
@@ -101,23 +103,39 @@ function createImage(imageSrc) {
 }
 
 const platformImage = createImage(platform)
+let platformSmallTallImage = createImage(platformSmallTall)
 
 const player = new Player();
 const platforms = [
   new Platform({
-  x: -1,
-  y: 480,
-  image: platformImage
-}),
+    x: platformImage.width * 4 + 100 - 2 + platformImage.width - platformSmallTall.width,
+    y: 280,
+    image: createImage(platformSmallTall)
+  }),
+  new Platform({
+    x: -1,
+    y: 480,
+    image: platformImage
+  }),
   new Platform({
     x: platformImage.width - 2.9,
     y: 480,
     image: platformImage }),
-  new Platform({
-    x: platformImage.width * 2 + 100,
-    y: 480,
-    image: platformImage
-  })
+    new Platform({
+      x: platformImage.width * 2 + 100,
+      y: 480,
+      image: platformImage
+    }),
+    new Platform({
+      x: platformImage.width * 3 + 200,
+      y: 480,
+      image: platformImage
+    }),
+    new Platform({
+      x: platformImage.width * 4 + 100,
+      y: 480,
+      image: platformImage
+    })
 ]
 
 const keys = {
@@ -150,27 +168,27 @@ function animate() {
 
 
   if (keys.right.pressed && player.position.x < 500) {
-    player.velocity.x = 5
+    player.velocity.x = player.speed
   } else if (keys.left.pressed && player.position.x > 100) {
-    player.velocity.x = -5
+    player.velocity.x = -player.speed
   } else {
     player.velocity.x = 0
 
     if (keys.right.pressed) {
       platforms.forEach(platform => {
-        scrollOffset = scrollOffset + 5
-        platform.position.x = platform.position.x - 5
+        scrollOffset = scrollOffset + player.speed
+        platform.position.x = platform.position.x - player.speed;
       })
       genericObjects.forEach(GenericObject => {
-        GenericObject.position.x -= 3
+        GenericObject.position.x -= player.speed * .66
       })
     } else if (keys.left.pressed) {
       platforms.forEach(platform => {
-        scrollOffset = scrollOffset - 5
-        platform.position.x = platform.position.x + 5
+        scrollOffset = scrollOffset - player.speed
+        platform.position.x = platform.position.x + player.speed
       })
       genericObjects.forEach(GenericObject => {
-        GenericObject.position.x += 3
+        GenericObject.position.x += player.speed * .66
       })
     }
   }
@@ -227,7 +245,7 @@ window.addEventListener('keydown', ({keyCode}) => {
 
     case 87:
       console.log('up')
-      player.velocity.y = player.velocity.y - 20;
+      player.velocity.y = player.velocity.y - 10;
       break;
   }
 })
