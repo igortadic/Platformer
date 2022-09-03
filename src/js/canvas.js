@@ -108,7 +108,7 @@ let platformSmallTallImage = createImage(platformSmallTall)
 const player = new Player();
 const platforms = [
   new Platform({
-    x: platformImage.width * 4 + 100 - 2 + platformImage.width - platformSmallTall.width,
+    x: platformImage.width * 4 + 100 - 2 + platformImage.width - platformSmallTallImage.width,
     y: 280,
     image: createImage(platformSmallTall)
   }),
@@ -133,6 +133,11 @@ const platforms = [
     }),
     new Platform({
       x: platformImage.width * 4 + 100,
+      y: 480,
+      image: platformImage
+    }),
+    new Platform({
+      x: platformImage.width * 5 + 600,
       y: 480,
       image: platformImage
     })

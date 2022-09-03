@@ -279,7 +279,7 @@ var platformImage = createImage(_img_platform_png__WEBPACK_IMPORTED_MODULE_0__["
 var platformSmallTallImage = createImage(_img_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"]);
 var player = new Player();
 var platforms = [new Platform({
-  x: platformImage.width * 4 + 100 - 2 + platformImage.width - _img_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"].width,
+  x: platformImage.width * 4 + 100 - 2 + platformImage.width - platformSmallTallImage.width,
   y: 280,
   image: createImage(_img_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"])
 }), new Platform({
@@ -300,6 +300,10 @@ var platforms = [new Platform({
   image: platformImage
 }), new Platform({
   x: platformImage.width * 4 + 100,
+  y: 480,
+  image: platformImage
+}), new Platform({
+  x: platformImage.width * 5 + 600,
   y: 480,
   image: platformImage
 })];
