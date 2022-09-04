@@ -32,15 +32,33 @@ class Player {
     this.height = 150
 
     this.image = createImage(spriteStandRight)
-    this.frames = 0
+    this.frames = 1
+    this.sprites = {
+      stand: {
+        right: createImage(spriteStandRight),
+        left: createImage(spriteStandLeft),
+        cropWidth: 177,
+        width: 66
+      },
+      run: {
+        right: createImage(spriteRunRight),
+        left: createImage(spriteRunLeft),
+        cropWidth: 341,
+        width: 127.875
+      }
+    }
+
+    this.currentSprite = this.sprites.stand.right
+    this.currentCropWidth = 177
+
   }
 
   draw() {
     c.drawImage(
-      this.image,
-      177 * this.frames,
+      this.currentSprite,
+      this.currentCropWidth * this.frames,
       0,
-      177,
+      this.currentCropWidth,
       400,
       this.position.x,
       this.position.y,
@@ -51,7 +69,9 @@ class Player {
 
   update() {
     this.frames++
-    if(this.frames > 28) {
+    if(this.frames > 59 && (this.currentSprite === this.sprites.stand.left || this.currentSprite === this.sprites.stand.right)) {
+      this.frames = 0;
+    } else if(this.frames > 29 && (this.currentSprite === this.sprites.run.right || this.currentSprite === this.sprites.run.left)) {
       this.frames = 0;
     }
     this.draw()
@@ -161,6 +181,7 @@ const platforms = [
     })
 ]
 
+let lastKey
 const keys = {
   right: {
     pressed: false
@@ -235,6 +256,38 @@ console.log(scrollOffset);
     }
   })
 
+ // sprite switching
+  if (
+  keys.right.pressed &&
+  lastKey === 'right' && player.currenSprite !==
+  player.sprites.run.right) {
+    player.currentSprite = player.sprites.run.right
+    player.currentCropWidth = player.sprites.run.cropWidth
+    player.width = player.sprites.run.width
+  } else if (
+    keys.left.pressed &&
+    lastKey === 'left' && player.curentSprite !== player.sprites.run.left) {
+    player.currentSprite = player.sprites.run.left
+    player.currentCropWidth = player.sprites.run.cropWidth
+    player.width = player.sprites.run.width
+  } else if (
+    !keys.left.pressed &&
+    lastKey === 'left' &&
+    player.currentSprite !== player.sprites.stand.left
+  ) {
+    player.currentSprite = player.sprites.stand.left
+    player.currentCropWidth = player.sprites.stand.cropWidth
+    player.width = player.sprites.stand.width
+  } else if (
+    !keys.right.pressed &&
+    lastKey === 'right' &&
+    player.currentSprite !== player.sprites.stand.right
+  ) {
+    player.currentSprite = player.sprites.stand.right
+    player.currentCropWidth = player.sprites.stand.cropWidth
+    player.width = player.sprites.stand.width
+  }
+
   // Win condition
   if (scrollOffset > 2000) {
     console.log("you win!")
@@ -256,6 +309,7 @@ window.addEventListener('keydown', ({keyCode}) => {
     case 65:
       console.log('left')
       keys.left.pressed = true;
+      lastKey = 'left'
       break;
 
     case 83:
@@ -265,6 +319,7 @@ window.addEventListener('keydown', ({keyCode}) => {
     case 68:
       console.log('right')
       keys.right.pressed = true;
+      lastKey = 'right'
       break;
 
     case 87:
