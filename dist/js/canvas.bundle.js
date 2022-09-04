@@ -239,19 +239,26 @@ var Player = /*#__PURE__*/function () {
       x: 0,
       y: 1
     };
-    this.width = 30;
-    this.height = 30;
+    this.width = 66;
+    this.height = 150;
+    this.image = createImage(_img_spriteStandRight_png__WEBPACK_IMPORTED_MODULE_7__["default"]);
+    this.frames = 0;
   }
 
   _createClass(Player, [{
     key: "draw",
     value: function draw() {
-      c.fillStyle = 'red';
-      c.fillRect(this.position.x, this.position.y, this.width, this.height);
+      c.drawImage(this.image, 177 * this.frames, 0, 177, 400, this.position.x, this.position.y, this.width, this.height);
     }
   }, {
     key: "update",
     value: function update() {
+      this.frames++;
+
+      if (this.frames > 28) {
+        this.frames = 0;
+      }
+
       this.draw();
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;

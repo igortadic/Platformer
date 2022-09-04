@@ -28,20 +28,32 @@ class Player {
       x: 0,
       y: 1
     }
-    this.width = 30
-    this.height = 30
+    this.width = 66
+    this.height = 150
+
+    this.image = createImage(spriteStandRight)
+    this.frames = 0
   }
 
   draw() {
-    c.fillStyle = 'red';
-    c.fillRect(
+    c.drawImage(
+      this.image,
+      177 * this.frames,
+      0,
+      177,
+      400,
       this.position.x,
       this.position.y,
       this.width,
-      this.height)
+      this.height
+    )
   }
 
   update() {
+    this.frames++
+    if(this.frames > 28) {
+      this.frames = 0;
+    }
     this.draw()
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
